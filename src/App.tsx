@@ -12,21 +12,39 @@ import Shape3D from "./types/Shape3D.type";
 import Shape3dRadioGroup from "./components/Shape3dRadioGroup";
 import SimulationTypeToggle from "./components/SimulationTypeToggle";
 import SimulationTypeValue from "./types/SimuationTypeValue.type";
+import simulateVerity from "./verity-solver";
 import { useState } from "react";
 
 function App() {
     // Inside Room States
-    const [insideRoomLeftStatueValue, setInsideRoomLeftStatueValue] = useState<Shape2D>("");
-    const [insideRoomMidStatueValue, setInsideRoomMidStatueValue] = useState<Shape2D>("");
-    const [insideRoomRightStatueValue, setInsideRoomRightStatueValue] = useState<Shape2D>("");
+    const [insideRoomLeftStatueValue, setInsideRoomLeftStatueValue] = useState<Shape2D>("Circle");
+    const [insideRoomMidStatueValue, setInsideRoomMidStatueValue] = useState<Shape2D>("Square");
+    const [insideRoomRightStatueValue, setInsideRoomRightStatueValue] = useState<Shape2D>("Triangle");
 
     // Outside Room States
-    const [outsideRoomLeftStatueValue, setOutsideRoomLeftStatueValue] = useState<Shape3D>("");
-    const [outsideRoomMidStatueValue, setOutsideRoomMidStatueValue] = useState<Shape3D>("");
-    const [outsideRoomRightStatueValue, setOutsideRoomRightStatueValue] = useState<Shape3D>("");
+    const [outsideRoomLeftStatueValue, setOutsideRoomLeftStatueValue] = useState<Shape3D>("Cylinder");
+    const [outsideRoomMidStatueValue, setOutsideRoomMidStatueValue] = useState<Shape3D>("Cube");
+    const [outsideRoomRightStatueValue, setOutsideRoomRightStatueValue] = useState<Shape3D>("Prism");
 
     // Simulation Type State
     const [simulationType, setSimulationType] = useState<SimulationTypeValue>("Normal");
+
+    // Dissection Solution
+    const [dissectionSolution, setDissectionSolution] = useState<string[]>([]);
+
+    const getVeritySimulation = () => {
+        const simulation = simulateVerity(
+            insideRoomLeftStatueValue,
+            insideRoomMidStatueValue,
+            insideRoomRightStatueValue,
+            outsideRoomLeftStatueValue,
+            outsideRoomMidStatueValue,
+            outsideRoomRightStatueValue,
+            simulationType
+        );
+
+        setDissectionSolution(simulation);
+    };
 
     return (
         <Box
@@ -117,6 +135,7 @@ function App() {
 
                     <Button 
                         variant="contained"
+                        onClick={() => getVeritySimulation()}
                         sx={{
                             '&:hover': {
                                 "backgroundColor": '#e5e5e5', // Change to your desired hover background color
