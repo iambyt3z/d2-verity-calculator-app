@@ -1,0 +1,15 @@
+# Folders
+node_modules
+
+# Files
+index.html
+vite-env.d.ts
+main.css
+
+# Configs
+.eslintrc.json
+package.json
+package-lock.json
+tsconfig.json
+tsconfig.node.json
+vite.config.ts

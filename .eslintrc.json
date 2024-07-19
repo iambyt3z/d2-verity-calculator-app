@@ -1,0 +1,111 @@
+{
+    "env": {
+        "browser": true,
+        "es2020": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
+        "filenames",
+        "import",
+        "import-newlines",
+        "import-quotes",
+        "eslint-plugin-no-inline-styles",
+        "react",
+        "react-refresh"
+    ],
+    "ignorePatterns": ["**/*.css"],
+    "rules": {
+        //Rules from ESLint
+        "camelcase": "error",
+        "eol-last": ["error", "always"],
+        "function-call-argument-newline": ["error", "consistent"],
+        "indent": ["error", 4], //NOT WORKING FOR .ts FILES
+        "jsx-quotes": ["error", "prefer-double"],
+        "key-spacing": ["error", { "beforeColon": false }],
+        "keyword-spacing": [
+            "error", 
+            {
+                "after": true,
+                "before": true 
+            }
+        ],
+        "no-duplicate-imports": "error",
+        "no-empty-pattern": "error",
+        "no-template-curly-in-string": "error",
+        "no-unexpected-multiline": "error",
+        "no-unreachable": "error",
+        "prefer-destructuring": ["error", 
+            {
+                "array": false,
+                "object": true
+            }
+        ],
+        "quote-props": ["error", "always"],
+        "semi": ["error", "always"],
+        "sort-imports": "error",
+        "sort-keys": "error",
+
+        //Rules from @typescript-eslint eslint plugin
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": ["interface"],
+                "format": ["PascalCase"]
+            }
+        ],
+        "@typescript-eslint/member-delimiter-style": [
+            "error",
+            {
+                "multiline": { "delimiter": "semi", "requireLast": true },
+                "singleline": { "delimiter": "semi", "requireLast": true },
+                "multilineDetection": "brackets"
+            }
+        ],
+
+        //Rules from import eslint plugin
+        "import/no-default-export": "error",
+
+        //Rules from import-newlines eslint plugin
+        "import-newlines/enforce": [
+            "error",
+            {
+                "forceSingleLine": true,
+                "items": 2,
+                "max-len": 101,
+                "semi": true
+            }
+        ],
+
+        //Rules from import-quotes eslint plugin
+        "import-quotes/import-quotes": ["error", "double"],
+
+        //Rules from no-inline-styles eslint plugin
+        "no-inline-styles/no-inline-styles": "error",
+
+        //Rules from react eslint plugin
+        "react/jsx-boolean-value": "error",
+        "react/jsx-curly-brace-presence": [
+            "error", 
+            {
+                "children": "never",
+                "props": "never"
+            }
+        ],
+        "react/jsx-fragments": "error",
+        "react/no-array-index-key": "error",
+
+        //Rules from react refresh plugin
+        "react-refresh/only-export-components": [
+            "warn",
+            { 
+                "allowConstantExport": true 
+            }
+        ]
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    }
+}
