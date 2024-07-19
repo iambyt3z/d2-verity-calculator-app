@@ -5,14 +5,14 @@ const theme = createTheme({
         "MuiDivider": {
             "styleOverrides": {
                 "root": {
-                    "borderColor": "white",
+                    "borderColor": "#999999",
                     "borderWidth": "0.5px",
                 }
             }
         }
     },
     "typography": {
-        "fontFamily": `"Inter Variable", "Roboto", "Helvetica", "Arial", "sans-serif"`
+        "fontFamily": `"Inter Variable", "Roboto", "Helvetica", "Arial", "sans-serif"`,
     }
 });
 

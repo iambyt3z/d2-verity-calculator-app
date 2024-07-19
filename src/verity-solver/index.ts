@@ -13,7 +13,10 @@ export default function simulateVerity(
     outsideRoomMidStatueShape: Shape3D, 
     outsideRoomRightStatueShape: Shape3D,
     simulationType: SimulationTypeValue
-): string[] {
+): {
+    outsideRoomFinalShape: [string, string, string];
+    simulation: string[];
+} {
     const currentStatues = getCurrentStatues(
         outsideRoomLeftStatueShape,
         outsideRoomMidStatueShape,
@@ -27,8 +30,15 @@ export default function simulateVerity(
         simulationType
     );
 
-    return solveVerity(
-        currentStatues,
-        targetStatues
-    );
+    return {
+        "outsideRoomFinalShape": [
+            targetStatues[0].getShapeName(),
+            targetStatues[1].getShapeName(),
+            targetStatues[2].getShapeName()
+        ],
+        "simulation": solveVerity(
+            currentStatues,
+            targetStatues
+        )
+    };
 };

@@ -1,4 +1,14 @@
+import Shape3D from "../../types/Shape3D.type";
 import ShapesExcess from "./ShapesExcess";
+
+const shape3dMap: { [key: string]: Shape3D; } = {
+    "0, 0, 2": "Pyramid",
+    "0, 1, 1": "Prism",
+    "0, 2, 0": "Cube",
+    "1, 0, 1": "Cone",
+    "1, 1, 0": "Cylinder",
+    "2, 0, 0": "Sphere",
+};
 
 class Statue {
     circles: number;
@@ -21,6 +31,13 @@ class Statue {
         const excessTriangles = s1.triangles - s2.triangles;
 
         return new ShapesExcess(excessCircles, excessSquares, excessTriangles);
+    }
+
+    getShapeName(): Shape3D {
+        const key: string = `${this.circles}, ${this.squares}, ${this.triangles}`;
+        const shape3d = shape3dMap[key];
+
+        return shape3d;
     }
 };
 

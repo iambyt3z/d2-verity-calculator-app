@@ -6,6 +6,7 @@ import {
     Typography
 } from "@mui/material";
 
+import DissectionSimulation from "./components/DissectionSimulation";
 import Shape2D from "./types/Shape2D.type";
 import Shape2dRadioGroup from "./components/Shape2dRadioGroup";
 import Shape3D from "./types/Shape3D.type";
@@ -22,18 +23,22 @@ function App() {
     const [insideRoomRightStatueValue, setInsideRoomRightStatueValue] = useState<Shape2D>("Triangle");
 
     // Outside Room States
-    const [outsideRoomLeftStatueValue, setOutsideRoomLeftStatueValue] = useState<Shape3D>("Cylinder");
+    const [outsideRoomLeftStatueValue, setOutsideRoomLeftStatueValue] = useState<Shape3D>("Sphere");
     const [outsideRoomMidStatueValue, setOutsideRoomMidStatueValue] = useState<Shape3D>("Cube");
-    const [outsideRoomRightStatueValue, setOutsideRoomRightStatueValue] = useState<Shape3D>("Prism");
+    const [outsideRoomRightStatueValue, setOutsideRoomRightStatueValue] = useState<Shape3D>("Pyramid");
 
     // Simulation Type State
     const [simulationType, setSimulationType] = useState<SimulationTypeValue>("Normal");
 
-    // Dissection Solution
-    const [dissectionSolution, setDissectionSolution] = useState<string[]>([]);
+    // Dissection Simulation
+    const [dissectionSimulation, setDissectionSimulation] = useState<string[]>([]);
+    const [outsideRoomFinalShapes, setOutsideRoomFinalShapes] = useState<[string, string, string]>(["", "", ""]);
 
     const getVeritySimulation = () => {
-        const simulation = simulateVerity(
+        const {
+            "outsideRoomFinalShape": newOutsideRoomFinalShape,
+            simulation
+        } = simulateVerity(
             insideRoomLeftStatueValue,
             insideRoomMidStatueValue,
             insideRoomRightStatueValue,
@@ -43,7 +48,8 @@ function App() {
             simulationType
         );
 
-        setDissectionSolution(simulation);
+        setDissectionSimulation(simulation);
+        setOutsideRoomFinalShapes(newOutsideRoomFinalShape);
     };
 
     return (
@@ -58,7 +64,7 @@ function App() {
                     variant="h6"
                     textAlign="center"
                 >
-                    Inside Rooms
+                    Inside Rooms - Starting Shapes
                 </Typography>
 
                 <Stack direction="row" spacing={4}>
@@ -91,7 +97,7 @@ function App() {
                     variant="h6"
                     textAlign="center"
                 >
-                    Outside Room
+                    Outside Room - Starting Shapes
                 </Typography>
 
                 <Stack direction="row" spacing={4}>
@@ -138,15 +144,28 @@ function App() {
                         onClick={() => getVeritySimulation()}
                         sx={{
                             '&:hover': {
-                                "backgroundColor": '#e5e5e5', // Change to your desired hover background color
+                                "backgroundColor": '#e5e5e5',
                             },
-                            "backgroundColor": 'white', // Change to your desired background color
-                            "color": 'black', // Change to your desired text color
+                            "backgroundColor": 'white',
+                            "color": 'black',
                         }}
                     >
                         Simulate
                     </Button>
                 </Stack>
+
+                {
+                    (dissectionSimulation.length > 0) &&
+                    <Divider orientation="horizontal" />
+                }
+
+                {
+                    (dissectionSimulation.length > 0) &&
+                    <DissectionSimulation
+                        outsideRoomFinalShapes={outsideRoomFinalShapes}
+                        simulation={dissectionSimulation}
+                    />
+                }
             </Stack>
         </Box>
     );

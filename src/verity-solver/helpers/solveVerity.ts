@@ -58,12 +58,12 @@ export default function solveVerity (
 
         dunkTwoShape = excessShapeTwo;
 
-        solution.push(`Dunk ${dunkOneShape} at the ${statuePositions[dissectionStatueOneIndex]} Statue`);
+        solution.push(`Dunk ${dunkOneShape} on the ${statuePositions[dissectionStatueOneIndex]} Statue`);
 
         shapesExcesses[dissectionStatueOneIndex].decrementShape(dunkOneShape);
         shapesExcesses[dissectionStatueTwoIndex].incrementShape(dunkOneShape);
 
-        solution.push(`Dunk ${dunkTwoShape} at the ${statuePositions[dissectionStatueTwoIndex]} Statue`);
+        solution.push(`Dunk ${dunkTwoShape} on the ${statuePositions[dissectionStatueTwoIndex]} Statue`);
 
         shapesExcesses[dissectionStatueTwoIndex].decrementShape(dunkTwoShape);
         shapesExcesses[dissectionStatueOneIndex].incrementShape(dunkTwoShape);
