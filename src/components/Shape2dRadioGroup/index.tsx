@@ -13,10 +13,10 @@ import radioButtons from "./Buttons";
 interface Shape2dRadioGroupProps {
     "formLabel": string;
     "setValue": (newValue: Shape2D) => void;
-    "value": string;
+    "value": Shape2D;
 }
 
-const Shape2dRadioGroup: React.FC<Shape2dRadioGroupProps> = ({
+const Shape2dRadioGroup: React.FC<Shape2dRadioGroupProps> = React.memo(({
     formLabel,
     setValue,
     value
@@ -85,6 +85,6 @@ const Shape2dRadioGroup: React.FC<Shape2dRadioGroupProps> = ({
             </RadioGroup>
         </FormControl>
     );
-};
+});
 
 export default Shape2dRadioGroup;

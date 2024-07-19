@@ -1,29 +1,30 @@
-import CircleRadio from "./CircleRadio";
+import CircleRadio from "./components/CircleRadio";
 import { ReactElement } from "react";
-import SquareRadio from "./SquareRadio";
-import TriangleRadio from "./TriangleRadio";
+import Shape2D from "../../../types/Shape2D.type";
+import SquareRadio from "./components/SquareRadio";
+import TriangleRadio from "./components/TriangleRadio";
 
 interface RadioButton {
     "label": string;
     "radioButton": ReactElement<any, any>;
-    "value": string;
+    "value": Shape2D;
 };
 
 const radioButtons: RadioButton[] = [
     {
         "label": "Circle",
         "radioButton": <CircleRadio/>,
-        "value": "circle"
+        "value": "Circle",
     },
     {
         "label": "Square",
         "radioButton": <SquareRadio/>,
-        "value": "square"
+        "value": "Square",
     },
     {
         "label": "Triangle",
         "radioButton": <TriangleRadio/>,
-        "value": "triangle"
+        "value": "Triangle",
     },
 ];
 

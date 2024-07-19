@@ -5,23 +5,24 @@ import {
     RadioGroup,
 } from "@mui/material";
 
-import Shape2D from "../../types/Shape2D.type";
+import React from "react";
+import Shape3D from "../../types/Shape3D.type";
 import config from "../../config";
 import radioButtons from "./Buttons";
 
-interface Shape2dRadioGroupProps {
+interface Shape3dRadioGroupProps {
     "formLabel": string;
-    "setValue": (newValue: Shape2D) => void;
-    "value": string;
+    "setValue": (newValue: Shape3D) => void;
+    "value": Shape3D;
 }
 
-const Shape2dRadioGroup: React.FC<Shape2dRadioGroupProps> = ({
+const Shape3dRadioGroup: React.FC<Shape3dRadioGroupProps> = React.memo(({
     formLabel,
     setValue,
     value
 }) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue: Shape2D = (event.target as HTMLInputElement).value as Shape2D;
+        const newValue: Shape3D = (event.target as HTMLInputElement).value as Shape3D;
         setValue(newValue);
     };
 
@@ -52,8 +53,9 @@ const Shape2dRadioGroup: React.FC<Shape2dRadioGroupProps> = ({
                 value={value}
                 onChange={handleChange}
                 sx={{
-                    "display": "flex",
-                    "justifyContent": "space-around",
+                    "display": "grid",
+                    "gap": 2,
+                    "gridTemplateColumns": "repeat(3, 1fr)",
                     "marginLeft": "16px",
                     "width": "100%",
                 }}
@@ -84,6 +86,6 @@ const Shape2dRadioGroup: React.FC<Shape2dRadioGroupProps> = ({
             </RadioGroup>
         </FormControl>
     );
-};
+});
 
-export default Shape2dRadioGroup;
+export default Shape3dRadioGroup;

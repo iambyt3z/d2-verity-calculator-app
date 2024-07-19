@@ -1,12 +1,14 @@
 import { Radio, RadioProps } from "@mui/material";
-import Triangle from "../../../assets/2d-shapes/Triangle";
-import config from "../../../config";
+import Prism from "../../../../assets/3d-shapes/Prism";
+import config from "../../../../config";
 
-function TriangleRadio(props: RadioProps) {
+function PrismRadio(props: RadioProps) {
+    const { disabled } = props;
+
     return (
         <Radio
             checkedIcon={
-                <Triangle
+                <Prism
                     fill={config.shapeRadioCheckedColor}
                     height={config.shapeRadioHeight}
                     width={config.shapeRadioWidth}
@@ -14,17 +16,17 @@ function TriangleRadio(props: RadioProps) {
             }
 
             icon={
-                <Triangle
-                    fill={config.shapeRadioColor}
+                <Prism
+                    fill={(disabled) ? config.shapeRadioDisabledColor : config.shapeRadioColor}
                     height={config.shapeRadioHeight}
                     width={config.shapeRadioWidth}
                 />
             }
-
+            
             disableRipple
             {...props}
         />
     );
 };
 
-export default TriangleRadio;
+export default PrismRadio;

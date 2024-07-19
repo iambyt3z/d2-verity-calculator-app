@@ -1,12 +1,14 @@
 import { Radio, RadioProps } from "@mui/material";
-import Circle from "../../../assets/2d-shapes/Circle";
-import config from "../../../config";
+import Cone from "../../../../assets/3d-shapes/Cone";
+import config from "../../../../config";
 
-function CircleRadio(props: RadioProps) {
+function ConeRadio(props: RadioProps) {
+    const { disabled } = props;
+
     return (
         <Radio
             checkedIcon={
-                <Circle
+                <Cone
                     fill={config.shapeRadioCheckedColor}
                     height={config.shapeRadioHeight}
                     width={config.shapeRadioWidth}
@@ -14,8 +16,8 @@ function CircleRadio(props: RadioProps) {
             }
 
             icon={
-                <Circle
-                    fill={config.shapeRadioColor}
+                <Cone
+                    fill={(disabled) ? config.shapeRadioDisabledColor : config.shapeRadioColor}
                     height={config.shapeRadioHeight}
                     width={config.shapeRadioWidth}
                 />
@@ -27,4 +29,4 @@ function CircleRadio(props: RadioProps) {
     );
 };
 
-export default CircleRadio;
+export default ConeRadio;

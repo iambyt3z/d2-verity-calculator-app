@@ -1,14 +1,14 @@
 import { Radio, RadioProps } from "@mui/material";
-import Triangle from "../../../assets/2d-shapes/Triangle";
-import config from "../../../config";
+import Circle from "../../../../assets/2d-shapes/Circle";
+import config from "../../../../config";
 
-function TriangleRadio(props: RadioProps) {
+function CircleRadio(props: RadioProps) {
     const { disabled } = props;
 
     return (
         <Radio
             checkedIcon={
-                <Triangle
+                <Circle
                     fill={config.shapeRadioCheckedColor}
                     height={config.shapeRadioHeight}
                     width={config.shapeRadioWidth}
@@ -16,17 +16,17 @@ function TriangleRadio(props: RadioProps) {
             }
 
             icon={
-                <Triangle
+                <Circle
                     fill={(disabled) ? config.shapeRadioDisabledColor : config.shapeRadioColor}
                     height={config.shapeRadioHeight}
                     width={config.shapeRadioWidth}
                 />
             }
-
+            
             disableRipple
             {...props}
         />
     );
 };
 
-export default TriangleRadio;
+export default CircleRadio;

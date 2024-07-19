@@ -1,14 +1,14 @@
 import { Radio, RadioProps } from "@mui/material";
-import Square from "../../../assets/2d-shapes/Square";
-import config from "../../../config";
+import Pyramid from "../../../../assets/3d-shapes/Pyramid";
+import config from "../../../../config";
 
-function SquareRadio(props: RadioProps) {
+function PyramidRadio(props: RadioProps) {
     const { disabled } = props;
 
     return (
         <Radio
             checkedIcon={
-                <Square
+                <Pyramid
                     fill={config.shapeRadioCheckedColor}
                     height={config.shapeRadioHeight}
                     width={config.shapeRadioWidth}
@@ -16,17 +16,17 @@ function SquareRadio(props: RadioProps) {
             }
 
             icon={
-                <Square
+                <Pyramid
                     fill={(disabled) ? config.shapeRadioDisabledColor : config.shapeRadioColor}
                     height={config.shapeRadioHeight}
                     width={config.shapeRadioWidth}
                 />
             }
-
+            
             disableRipple
             {...props}
         />
     );
 };
 
-export default SquareRadio;
+export default PyramidRadio;

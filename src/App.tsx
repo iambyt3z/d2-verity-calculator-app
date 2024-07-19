@@ -7,6 +7,8 @@ import {
 
 import Shape2D from "./types/Shape2D.type";
 import Shape2dRadioGroup from "./components/Shape2dRadioGroup";
+import Shape3D from "./types/Shape3D.type";
+import Shape3dRadioGroup from "./components/Shape3dRadioGroup";
 import { useState } from "react";
 
 function App() {
@@ -14,6 +16,10 @@ function App() {
     const [insideRoomLeftStatueValue, setInsideRoomLeftStatueValue] = useState<Shape2D>("");
     const [insideRoomMidStatueValue, setInsideRoomMidStatueValue] = useState<Shape2D>("");
     const [insideRoomRightStatueValue, setInsideRoomRightStatueValue] = useState<Shape2D>("");
+
+    const [outsideRoomLeftStatueValue, setOutsideRoomLeftStatueValue] = useState<Shape3D>("");
+    const [outsideRoomMidStatueValue, setOutsideRoomMidStatueValue] = useState<Shape3D>("");
+    const [outsideRoomRightStatueValue, setOutsideRoomRightStatueValue] = useState<Shape3D>("");
 
 
     return (
@@ -65,6 +71,41 @@ function App() {
                         setValue={setInsideRoomRightStatueValue}
                     />
                 </Stack>
+
+                <Divider orientation="horizontal" />
+
+                <Typography 
+                    variant="h6"
+                    textAlign="center"
+                >
+                    Outside Room
+                </Typography>
+
+                <Stack direction="row" spacing={4}>
+                    <Shape3dRadioGroup
+                        formLabel="Left Statue"
+                        value={outsideRoomLeftStatueValue}
+                        setValue={setOutsideRoomLeftStatueValue}
+                    />
+
+                    <Divider orientation="vertical" />
+
+                    <Shape3dRadioGroup
+                        formLabel="Middle Statue"
+                        value={outsideRoomMidStatueValue}
+                        setValue={setOutsideRoomMidStatueValue}
+                    />
+
+                    <Divider orientation="vertical"/>
+
+                    <Shape3dRadioGroup
+                        formLabel="Right Statue"
+                        value={outsideRoomRightStatueValue}
+                        setValue={setOutsideRoomRightStatueValue}
+                    />
+                </Stack>
+
+                <Divider orientation="horizontal" />
             </Stack>
         </Box>
     );
