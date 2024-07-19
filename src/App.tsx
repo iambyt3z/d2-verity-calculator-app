@@ -1,5 +1,6 @@
 import {
     Box,
+    Button,
     Divider,
     Stack,
     Typography
@@ -9,38 +10,32 @@ import Shape2D from "./types/Shape2D.type";
 import Shape2dRadioGroup from "./components/Shape2dRadioGroup";
 import Shape3D from "./types/Shape3D.type";
 import Shape3dRadioGroup from "./components/Shape3dRadioGroup";
+import SimulationTypeToggle from "./components/SimulationTypeToggle";
+import SimulationTypeValue from "./types/SimuationTypeValue.type";
 import { useState } from "react";
 
 function App() {
-    //Inside Room States
+    // Inside Room States
     const [insideRoomLeftStatueValue, setInsideRoomLeftStatueValue] = useState<Shape2D>("");
     const [insideRoomMidStatueValue, setInsideRoomMidStatueValue] = useState<Shape2D>("");
     const [insideRoomRightStatueValue, setInsideRoomRightStatueValue] = useState<Shape2D>("");
 
+    // Outside Room States
     const [outsideRoomLeftStatueValue, setOutsideRoomLeftStatueValue] = useState<Shape3D>("");
     const [outsideRoomMidStatueValue, setOutsideRoomMidStatueValue] = useState<Shape3D>("");
     const [outsideRoomRightStatueValue, setOutsideRoomRightStatueValue] = useState<Shape3D>("");
 
+    // Simulation Type State
+    const [simulationType, setSimulationType] = useState<SimulationTypeValue>("Normal");
 
     return (
         <Box
-            height="100vh"
             display="flex"
             justifyContent="center"
             margin={0}
             paddingTop={6}
-            boxSizing="border-box"
         >
             <Stack spacing={6}>
-                <Box pb={2}>
-                    <Typography 
-                        variant="h4"
-                        textAlign="center"
-                    >
-                        Verity Calculator
-                    </Typography>
-                </Box>
-
                 <Typography 
                     variant="h6"
                     textAlign="center"
@@ -106,6 +101,33 @@ function App() {
                 </Stack>
 
                 <Divider orientation="horizontal" />
+
+                <Stack
+                    direction="row"
+                    spacing={6}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    width="100%"
+                >
+                    <SimulationTypeToggle
+                        value={simulationType}
+                        setValue={setSimulationType}
+                    />
+
+                    <Button 
+                        variant="contained"
+                        sx={{
+                            '&:hover': {
+                                "backgroundColor": '#e5e5e5', // Change to your desired hover background color
+                            },
+                            "backgroundColor": 'white', // Change to your desired background color
+                            "color": 'black', // Change to your desired text color
+                        }}
+                    >
+                        Simulate
+                    </Button>
+                </Stack>
             </Stack>
         </Box>
     );
