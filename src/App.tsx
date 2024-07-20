@@ -5,7 +5,12 @@ import {
     Stack,
     Typography
 } from "@mui/material";
-import { useEffect, useState } from "react";
+
+import {
+    useEffect,
+    useRef,
+    useState
+} from "react";
 
 import DissectionSimulation from "./components/DissectionSimulation";
 import Shape2D from "./types/Shape2D.type";
@@ -39,6 +44,9 @@ function App() {
     // Dissection Simulation
     const [dissectionSimulation, setDissectionSimulation] = useState<string[]>([]);
     const [outsideRoomFinalShapes, setOutsideRoomFinalShapes] = useState<[string, string, string]>(["", "", ""]);
+
+    const boxRef = useRef<HTMLDivElement | null>(null);
+    const bottomRef = useRef<HTMLDivElement | null>(null);
 
     const getVeritySimulation = () => {
         const {
@@ -87,12 +95,24 @@ function App() {
         simulationType
     ]);
 
+    useEffect(() => {
+        // Ensure the content is rendered and scroll to the bottom initially if needed
+        setTimeout(() => {
+            console.log("Scroll now");
+
+            if (bottomRef.current) {
+                bottomRef.current.scrollIntoView({ "behavior": 'smooth' });
+            }
+        }, 50);
+    }, [dissectionSimulation]);
+
     return (
         <Box
             display="flex"
             justifyContent="center"
             margin={0}
             paddingTop={4}
+            ref={boxRef}
         >
             <Stack spacing={4}>
                 <Typography 
@@ -243,6 +263,8 @@ function App() {
                         simulation={dissectionSimulation}
                     />
                 }
+
+                <div ref={bottomRef}></div>
             </Stack>
         </Box>
     );
