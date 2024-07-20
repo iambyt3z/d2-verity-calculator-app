@@ -23,7 +23,7 @@ const DissectionSimulation: React.FC<DissectionSimulationProps> = React.memo(({
     simulation
 }) => {
     return (
-        <Grid container>
+        <Grid container pb={15}>
             <Grid item xs={6}>
                 <Stack
                     direction="column"

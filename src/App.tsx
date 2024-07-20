@@ -5,6 +5,7 @@ import {
     Stack,
     Typography
 } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import DissectionSimulation from "./components/DissectionSimulation";
 import Shape2D from "./types/Shape2D.type";
@@ -14,7 +15,8 @@ import Shape3dRadioGroup from "./components/Shape3dRadioGroup";
 import SimulationTypeToggle from "./components/SimulationTypeToggle";
 import SimulationTypeValue from "./types/SimuationTypeValue.type";
 import simulateVerity from "./verity-solver";
-import { useState } from "react";
+import validateInsideRoomShapes from "./validations/validateInsideRoomShapes";
+import validateOutsideRoomShapes from "./validations/validateOutsideRoomShapes";
 
 function App() {
     // Inside Room States
@@ -26,6 +28,10 @@ function App() {
     const [outsideRoomLeftStatueValue, setOutsideRoomLeftStatueValue] = useState<Shape3D>("Sphere");
     const [outsideRoomMidStatueValue, setOutsideRoomMidStatueValue] = useState<Shape3D>("Cube");
     const [outsideRoomRightStatueValue, setOutsideRoomRightStatueValue] = useState<Shape3D>("Pyramid");
+
+    // Validate Statue Shapes
+    const [areInsideRoomStatueShapesValid, setAreInsideRoomStatueShapesValid] = useState<boolean>(true);
+    const [areOutsideRoomStatueShapesValid, setAreOutsideRoomStatueShapesValid] = useState<boolean>(true);
 
     // Simulation Type State
     const [simulationType, setSimulationType] = useState<SimulationTypeValue>("Normal");
@@ -52,20 +58,70 @@ function App() {
         setOutsideRoomFinalShapes(newOutsideRoomFinalShape);
     };
 
+    useEffect(() => {
+        setDissectionSimulation([]);
+        setOutsideRoomFinalShapes(["", "", ""]);
+
+        setAreInsideRoomStatueShapesValid(
+            validateInsideRoomShapes(
+                insideRoomLeftStatueValue,
+                insideRoomMidStatueValue,
+                insideRoomRightStatueValue
+            )
+        );
+
+        setAreOutsideRoomStatueShapesValid(
+            validateOutsideRoomShapes(
+                outsideRoomLeftStatueValue,
+                outsideRoomMidStatueValue,
+                outsideRoomRightStatueValue
+            )
+        );
+    }, [
+        insideRoomLeftStatueValue,
+        insideRoomMidStatueValue,
+        insideRoomRightStatueValue,
+        outsideRoomLeftStatueValue,
+        outsideRoomMidStatueValue,
+        outsideRoomRightStatueValue,
+        simulationType
+    ]);
+
     return (
         <Box
             display="flex"
             justifyContent="center"
             margin={0}
-            paddingTop={6}
+            paddingTop={4}
         >
-            <Stack spacing={6}>
+            <Stack spacing={4}>
                 <Typography 
-                    variant="h6"
+                    variant="h5"
                     textAlign="center"
+                    fontWeight={700}
                 >
-                    Inside Rooms - Starting Shapes
+                    Destiny 2 - Verity Calculator
                 </Typography>
+
+                <Stack spacing={1}>
+                    <Typography 
+                        variant="h6"
+                        textAlign="center"
+                    >
+                        Inside Rooms - Starting Shapes
+                    </Typography>
+
+                    <Typography
+                        textAlign="center"
+                        color="#ff6161"
+                    >
+                        {
+                            (areInsideRoomStatueShapesValid)
+                                ? <>&nbsp;</>
+                                : <>The selected combination of 2d shapes is not possible</>
+                        }
+                    </Typography>
+                </Stack>
 
                 <Stack direction="row" spacing={4}>
                     <Shape2dRadioGroup 
@@ -93,12 +149,25 @@ function App() {
 
                 <Divider orientation="horizontal" />
 
-                <Typography 
-                    variant="h6"
-                    textAlign="center"
-                >
-                    Outside Room - Starting Shapes
-                </Typography>
+                <Stack spacing={1}>
+                    <Typography 
+                        variant="h6"
+                        textAlign="center"
+                    >
+                        Outside Rooms - Starting Shapes
+                    </Typography>
+
+                    <Typography
+                        textAlign="center"
+                        color="#ff6161"
+                    >
+                        {
+                            (areOutsideRoomStatueShapesValid)
+                                ? <>&nbsp;</>
+                                : <>The selected combination of 3d shapes is not possible</>
+                        }
+                    </Typography>
+                </Stack>
 
                 <Stack direction="row" spacing={4}>
                     <Shape3dRadioGroup
@@ -142,7 +211,15 @@ function App() {
                     <Button 
                         variant="contained"
                         onClick={() => getVeritySimulation()}
+                        disabled={ ! (
+                            areInsideRoomStatueShapesValid &&
+                            areOutsideRoomStatueShapesValid
+                        )}
                         sx={{
+                            '&.Mui-disabled': {
+                                "backgroundColor": '#8b8b8b',
+                                "color": '#4e4e4e',
+                            },
                             '&:hover': {
                                 "backgroundColor": '#e5e5e5',
                             },

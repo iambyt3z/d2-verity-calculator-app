@@ -19,9 +19,11 @@ const SimulationTypeToggle: React.FC<SimulationTypeProps> = React.memo(({
 }) => {
     const handleChange = (
         _event: React.MouseEvent<HTMLElement>,
-        newValue: SimulationTypeValue,
+        newValue: SimulationTypeValue | null,
     ) => {
-        setValue(newValue);
+        if (newValue !== null) {
+            setValue(newValue);
+        }
     };
 
     return (
