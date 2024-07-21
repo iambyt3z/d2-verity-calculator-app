@@ -1,30 +1,37 @@
-# React + TypeScript + Vite
+# D2 Verity Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[**Website**](https://d2-verity-calculator.netlify.app/)
 
-Currently, two official plugins are available:
+Welcome to the **D2 Verity Calculator**! This React application is designed to assist users with the Verity encounter's outside room dissection part in Destiny 2. The app provides clear instructions to ensure you successfully complete the dissection part of the encounter.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To get the instruction on how to complete the dissection, just select the shapes which appear on the statue inside the inside rooms, shapes which appear on the statue inside the outside room, and select if the dissection is to be done for normally or for challenge's phase 2. After selecting the shapes and encounter type, just press the Simulate button to get the instructions.
 
-## Expanding the ESLint configuration
+Happy dissecting!
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Contributing
 
-- Configure the top-level `parserOptions` property like this:
+We welcome contributions to the D2 Verity Calculator! If you have suggestions or find any issues, please open an issue or submit a pull request.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Steps to Contribute
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Fork the repository.
+2. Create a new branch:
+
+    ```bash
+    git checkout -b feature/your-feature-name
+    ```
+
+3. Make your changes.
+4. Commit your changes:
+
+    ```bash
+    git commit -m 'Add some feature'
+    ```
+
+5. Push to the branch:
+
+    ```bash
+    git push origin feature/your-feature-name
+    ```
+
+6. Open a pull request.
