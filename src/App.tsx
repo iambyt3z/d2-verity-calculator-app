@@ -19,6 +19,7 @@ import Shape3D from "./types/Shape3D.type";
 import Shape3dRadioGroup from "./components/Shape3dRadioGroup";
 import SimulationTypeToggle from "./components/SimulationTypeToggle";
 import SimulationTypeValue from "./types/SimuationTypeValue.type";
+import useVerityCalculator from "./hooks/useVerityCalculator";
 import validateInsideRoomShapes from "./validations/validateInsideRoomShapes";
 import validateOutsideRoomShapes from "./validations/validateOutsideRoomShapes";
 
@@ -46,9 +47,22 @@ function App() {
 
     const boxRef = useRef<HTMLDivElement | null>(null);
     const bottomRef = useRef<HTMLDivElement | null>(null);
+    const {"isLoading": _isLoading, verityCalculator} = useVerityCalculator();
 
     const getVeritySimulation = () => {
-        
+        verityCalculator(
+            insideRoomLeftStatueValue,
+            insideRoomMidStatueValue,
+            insideRoomRightStatueValue,
+            outsideRoomLeftStatueValue,
+            outsideRoomMidStatueValue,
+            outsideRoomRightStatueValue,
+            (simulationType == "Challege Phase 2")
+        )
+            .then((result) => {
+                setDissectionSimulation(result.OutsideDissectionSteps);
+                setOutsideRoomFinalShapes(result.OutsideTargetStatueShapeNames);
+            });
     };
 
     useEffect(() => {
@@ -83,8 +97,6 @@ function App() {
     useEffect(() => {
         // Ensure the content is rendered and scroll to the bottom initially if needed
         setTimeout(() => {
-            console.log("Scroll now");
-
             if (bottomRef.current) {
                 bottomRef.current.scrollIntoView({ "behavior": 'smooth' });
             }
