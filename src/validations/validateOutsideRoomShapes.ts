@@ -25,8 +25,6 @@ export default function validateOutsideRoomShapes (
         leftStatue2dShapesCount[2] + midStatue2dShapesCount[2] + rightStatue2dShapesCount[2]
     ];
 
-    console.log(total2dShapesCount);
-
     return ! (
         total2dShapesCount[0] > 2 ||
         total2dShapesCount[1] > 2 ||

@@ -19,7 +19,6 @@ import Shape3D from "./types/Shape3D.type";
 import Shape3dRadioGroup from "./components/Shape3dRadioGroup";
 import SimulationTypeToggle from "./components/SimulationTypeToggle";
 import SimulationTypeValue from "./types/SimuationTypeValue.type";
-import simulateVerity from "./verity-solver";
 import validateInsideRoomShapes from "./validations/validateInsideRoomShapes";
 import validateOutsideRoomShapes from "./validations/validateOutsideRoomShapes";
 
@@ -49,21 +48,7 @@ function App() {
     const bottomRef = useRef<HTMLDivElement | null>(null);
 
     const getVeritySimulation = () => {
-        const {
-            "outsideRoomFinalShape": newOutsideRoomFinalShape,
-            simulation
-        } = simulateVerity(
-            insideRoomLeftStatueValue,
-            insideRoomMidStatueValue,
-            insideRoomRightStatueValue,
-            outsideRoomLeftStatueValue,
-            outsideRoomMidStatueValue,
-            outsideRoomRightStatueValue,
-            simulationType
-        );
-
-        setDissectionSimulation(simulation);
-        setOutsideRoomFinalShapes(newOutsideRoomFinalShape);
+        
     };
 
     useEffect(() => {
